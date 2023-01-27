@@ -1,7 +1,7 @@
 <template>
   <q-form class="form" autofocus>
     <q-input id="login" name="login" type="text" v-model="login" label="Votre login"/>
-    <q-input id="password" name="password" type="text" v-model="password" label="Votre mot de passe"/>
+    <q-input id="password" name="password" type="password" v-model="password" label="Votre mot de passe"/>
     <q-btn @click="CheckAuth">Valider</q-btn>
     <q-item-label class="alert" v-if="this.showMessage">Identifiants incorrects</q-item-label>
   </q-form>
@@ -9,9 +9,6 @@
 
 <script>
 import {user} from "src/utils/login";
-import {useRouter} from "vue-router";
-import router from "src/router";
-
 export default {
   name: "LoginForm",
   components: {},
@@ -20,10 +17,6 @@ export default {
       login: "",
       password: "",
       isAuth: this.$store.getters.getIsAuth,
-      user: {
-        username: this.$store.commit('setUserName', this.login),
-        password: this.$store.commit('setUserPwd', this.password)
-      },
       showMessage: false
     }
   },
