@@ -2,16 +2,29 @@ import {createStore} from 'vuex'
 
 export default createStore({
   state: {
-    movies: []
+    isAuth: false,
+    user: {
+      username: "",
+      password: "",
+    }
   },
   getters: {
-    getMovies: (state) => {
-      return state.movies;
+    getIsAuth(state){
+      return state.isAuth
+    },
+    getUser(state) {
+      return state.user;
     }
   },
   mutations: {
-    setMovies: (state, movies) => {
-      state.movies = movies;
+    setIsAuth(state, value) {
+      state.isAuth = value;
+    },
+    setUserName(state, value) {
+      state.user.username = value;
+    },
+    setUserPwd(state, value) {
+      state.user.password = value;
     }
   },
   actions: {},

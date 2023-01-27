@@ -6,13 +6,12 @@
         <q-toolbar-title>
           The Movie Database
         </q-toolbar-title>
-        <q-input type="text"/>
       </q-toolbar>
     </q-header>
 
     <q-drawer :breakpoint="767" v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header>
+        <q-item-label class="label" header>
           Liens Essentiels
         </q-item-label>
 
@@ -48,6 +47,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'MainLayout',
   data() {
@@ -65,6 +65,12 @@ export default {
           label: "Séries",
           icon: "monitor",
           route: "/shows"
+        },
+        {
+          id: 2,
+          label: "Home",
+          icon: "home",
+          route: "/"
         }
       ]
     }
@@ -77,8 +83,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 @media screen and (min-width: 768px) {
+  .q-drawer{
+  }
   .q-footer {
     display: none;
   }
@@ -87,6 +95,7 @@ export default {
 @media screen and (max-width: 767px ) {
   .q-drawer {
     display: none;
+    background-color: black;
   }
 
   .q-btn {
