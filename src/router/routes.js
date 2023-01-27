@@ -29,6 +29,16 @@ const routes = [
         component: () => import('pages/ShowPage.vue') }
     ]
   },
+  {
+    path: '/search',
+    name: "Search",
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '',
+        name: "abstract_search",
+        component: () => import('pages/SearchPage.vue') }
+    ]
+  },
   // 404 ROUTE REDIRECTION
   {
     path: '/:catchAll(.*)*',

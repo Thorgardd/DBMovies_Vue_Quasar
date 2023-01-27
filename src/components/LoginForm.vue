@@ -1,7 +1,7 @@
 <template>
   <q-form class="form" autofocus>
     <q-input id="login" name="login" type="text" v-model="login" label="Votre login"/>
-    <q-input id="password" name="password" type="password" v-model="password" label="Votre mot de passe"/>
+    <q-input id="password" name="password" type="password" v-model="password" label="Votre mot de passe" v-on:keyup.enter="CheckAuth"/>
     <q-btn @click="CheckAuth">Valider</q-btn>
     <q-item-label class="alert" v-if="this.showMessage">Identifiants incorrects</q-item-label>
   </q-form>

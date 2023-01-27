@@ -1,37 +1,33 @@
 <template>
   <div class="container">
-    <div class="movieList">
-      <CardComponent :entity="movie" v-for="movie in this.movies"/>
+    <SearchBar/>
+    <div class="searchList">
+      <div v-for="results in this.searchResult">
+        <CardComponent :entity="result" v-for="result in results"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import CardComponent from "components/CardComponent.vue";
 import {JsonParser, RedirectIfNotAuth} from "src/utils/Utils";
 import SearchBar from "components/SearchBar.vue";
 
 export default {
-  name: "MoviePage.vue",
-  components: {SearchBar, CardComponent},
-  data() {
-    return {
-      movies: JsonParser(this.$store.getters.getMovies),
-      searchResult: JsonParser(this.$store.getters.getSearchResult)
-    }
+  name: "SearchPage",
+  components: {
+    SearchBar
   },
   methods: {
-    GetMoviesByTrends() {
-      this.$axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.$apiKey}&language=en-US&page=1`)
-        .then((res) => {
-          this.$store.commit('setMovies', res.data.results)
-        })
-        .catch((err) => console.log(err))
+
+  },
+  data() {
+    return {
+      searchResult: JsonParser(this.$store.getters.getSearchResult)
     }
   },
   created() {
     RedirectIfNotAuth(this.$store.getters.getIsAuth, this.$router)
-    this.GetMoviesByTrends();
   }
 }
 </script>
@@ -42,8 +38,10 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: red;
 
-  .movieList {
+  .searchList {
+    background-color: yellow;
     justify-content: center;
     align-items: center;
     padding: 20px;

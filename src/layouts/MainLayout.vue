@@ -56,18 +56,24 @@ export default {
       links: [
         {
           id: 0,
+          label: "Recherche",
+          icon: "search",
+          route: "/search"
+        },
+        {
+          id: 1,
           label: "Films",
           icon: "movie",
           route: "/movies"
         },
         {
-          id: 1,
+          id: 2,
           label: "Séries",
           icon: "monitor",
           route: "/shows"
         },
         {
-          id: 2,
+          id: 3,
           label: "Home",
           icon: "home",
           route: "/"

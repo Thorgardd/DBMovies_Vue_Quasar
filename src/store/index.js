@@ -18,9 +18,6 @@ export default createStore({
     getShows(state) {
       return state.shows
     },
-    getSearch(state) {
-      return state.search
-    },
     getSearchResult(state) {
       return state.searchResult
     }
@@ -34,9 +31,6 @@ export default createStore({
     },
     setShows(state, payload) {
       state.shows = payload
-    },
-    setSearch(state, payload) {
-      state.search = payload
     },
     setSearchResult(state, payload) {
       state.searchResult = payload

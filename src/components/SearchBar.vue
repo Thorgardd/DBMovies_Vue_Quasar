@@ -1,17 +1,25 @@
 <template>
   <div class="barContainer">
-    <q-input class="searchBar" type="text" @change="(e) => onChange(e?.target.value)"/>
+    <q-input class="searchBar" label="Recherche" type="text" v-model="this.search" v-on:keyup.enter="() => this.GetSearch()"/>
   </div>
 </template>
 
 <script>
-import {JsonParser} from "src/utils/Utils";
-
 export default {
   name: "SearchBar",
+  props: {
+    isMovie: Boolean
+  },
+  data() {
+    return {
+      search: ""
+    }
+  },
   methods: {
-    onChange(value) {
-      this.$store.commit('setSearch', value)
+    GetSearch() {
+      this.$axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${this.$apiKey}&language=en-US&page=1&include_adult=false&query=${this.search}`)
+        .then((res) => this.$store.commit('setSearchResult', res.data.results))
+        .catch((err) => console.log(err))
     }
   }
 }
@@ -22,5 +30,7 @@ export default {
   display: flex;
   height: auto;
   width: 100%;
+  margin: 10px;
+  padding-left: 10px;
 }
 </style>
